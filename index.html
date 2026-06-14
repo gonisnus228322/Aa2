@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="family">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- DESIGN CORE ELEMENTS & THEME RESET --- */
@@ -17,7 +17,7 @@
             padding: 0;
             background-color: #0f0f0f;
             color: #f1f1f1;
-            font-family: "Inter", "Roboto", "Arial", sans-serif;
+            font-family: "Roboto", "Arial", sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -41,10 +41,10 @@
         .left-header-section {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 6px; /* Matches identical spacing next to menu icon */
         }
 
-        /* The 3 Lines Menu Button (Pure CSS) */
+        /* Pure CSS 3 Lines Menu Button */
         .menu-button {
             width: 40px;
             height: 40px;
@@ -63,51 +63,18 @@
             background-color: #f1f1f1;
         }
 
-        /* Official Recreated Branding Wrapper */
+        /* Perfected Branding Image Component */
         .logo-section {
             display: flex;
             align-items: center;
             cursor: pointer;
             user-select: none;
+            padding: 18px 14px 18px 8px;
         }
         
-        .yt-red-play {
-            width: 28px;
-            height: 20px;
-            background-color: #ff0000;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        /* Triangle inside play icon */
-        .yt-red-play::after {
-            content: "";
+        .logo-section img {
+            height: 20px; /* Precise height configuration matching desktop spec */
             display: block;
-            width: 0;
-            height: 0;
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-            border-left: 8px solid #ffffff;
-            margin-left: 2px;
-        }
-
-        /* Perfected YouTube Text styling */
-        .yt-text-logo {
-            color: #ffffff;
-            font-size: 1.15rem;
-            font-weight: 800; /* Extra bold thick text */
-            letter-spacing: -1.2px; /* Pulls letters together tightly like the real logo */
-            margin-left: 4px;
-        }
-
-        .region-tag {
-            font-size: 10px;
-            color: #aaa;
-            align-self: flex-start;
-            margin-top: 1px;
-            margin-left: 2px;
-            font-weight: 500;
         }
 
         .search-container {
@@ -142,24 +109,22 @@
             border-radius: 0 40px 40px 0;
             color: white;
             cursor: pointer;
-            font-size: 1rem;
         }
 
         .user-section {
             display: flex;
             align-items: center;
-            gap: 16px;
         }
 
         /* --- SKELETON LOADING PLACEHOLDERS --- */
         .skeleton {
             background-color: #282828;
-            border-radius: 4px;
+            border-radius: 8px; /* Smooth corners for modern video assets */
             position: relative;
             overflow: hidden;
         }
 
-        /* Pulsing light effect animation */
+        /* Continuous buffering pulse trace */
         .skeleton::after {
             content: "";
             position: absolute;
@@ -186,7 +151,7 @@
             box-sizing: border-box;
         }
 
-        /* --- PRIMARY CONTENT BLOCK --- */
+        /* --- PRIMARY CONTENT COLUMN --- */
         .primary-content {
             display: flex;
             flex-direction: column;
@@ -211,232 +176,3 @@
         .video-title {
             font-size: 1.25rem;
             font-weight: 700;
-            margin: 12px 0 8px 0;
-            line-height: 1.4;
-        }
-
-        .video-meta-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .channel-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .channel-details {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .subscribe-btn {
-            background-color: #f1f1f1;
-            color: #0f0f0f;
-            border: none;
-            padding: 0 16px;
-            height: 36px;
-            border-radius: 18px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .utility-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            padding: 0 16px;
-            height: 36px;
-            border-radius: 18px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .video-description {
-            background-color: #212121;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        /* --- FIXED SIDEBAR RE-STYLING ENGINE --- */
-        .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .recommended-card {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .thumb-box {
-            width: 168px;
-            height: 94px;
-            border-radius: 8px;
-            flex-shrink: 0;
-        }
-
-        .card-details {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 100%;
-            padding-top: 4px;
-        }
-
-        /* Fixed specific height loading lines so they stay solid and visible */
-        .loading-title-line {
-            width: 90%;
-            height: 14px;
-            margin-bottom: 8px;
-        }
-
-        .loading-meta-line {
-            width: 55%;
-            height: 11px;
-        }
-
-        @media (max-width: 1016px) {
-            .page-container {
-                grid-template-columns: 1fr;
-                padding: 16px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="left-header-section">
-            <div class="menu-button">
-                <div class="menu-line"></div>
-                <div class="menu-line" style="margin: 4px 0;"></div>
-                <div class="menu-line"></div>
-            </div>
-            <div class="logo-section">
-                <div class="yt-red-play"></div>
-                <span class="yt-text-logo">YouTube</span>
-                <span class="region-tag">IQ</span>
-            </div>
-        </div>
-        
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Search">
-            <button class="search-btn">🔍</button>
-        </div>
-        
-        <div class="user-section">
-            <div class="skeleton" style="width: 32px; height: 32px; border-radius: 50%;"></div>
-        </div>
-    </header>
-
-    <div class="page-container">
-        
-        <main class="primary-content">
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-            </div>
-
-            <h1 class="video-title">Grand Theft Auto V Trailer</h1>
-
-            <div class="video-meta-row">
-                <div class="channel-info">
-                    <div class="skeleton channel-avatar"></div>
-                    <div class="channel-details">
-                        <div class="skeleton" style="width: 110px; height: 14px; margin-bottom: 6px;"></div>
-                        <div class="skeleton" style="width: 70px; height: 10px;"></div>
-                    </div>
-                    <button class="subscribe-btn" style="margin-left: 12px;">Subscribe</button>
-                </div>
-                
-                <div class="button-group">
-                    <button class="utility-btn">👍 2.8M</button>
-                    <button class="utility-btn">👎</button>
-                    <button class="utility-btn">↩️ Share</button>
-                    <button class="utility-btn">📥 Download</button>
-                </div>
-            </div>
-
-            <div class="video-description">
-                <p style="margin: 0 0 6px 0; font-weight: bold;">128M views • 14 years ago</p>
-                <div class="skeleton" style="width: 85%; height: 12px; margin-bottom: 6px;"></div>
-                <div class="skeleton" style="width: 60%; height: 12px;"></div>
-            </div>
-        </main>
-
-        <aside class="sidebar-content">
-            
-            <div class="recommended-card">
-                <div class="skeleton thumb-box"></div>
-                <div class="card-details">
-                    <div class="skeleton loading-title-line"></div>
-                    <div class="skeleton loading-meta-line"></div>
-                </div>
-            </div>
-
-            <div class="recommended-card">
-                <div class="skeleton thumb-box"></div>
-                <div class="card-details">
-                    <div class="skeleton loading-title-line"></div>
-                    <div class="skeleton loading-meta-line"></div>
-                </div>
-            </div>
-
-            <div class="recommended-card">
-                <div class="skeleton thumb-box"></div>
-                <div class="card-details">
-                    <div class="skeleton loading-title-line"></div>
-                    <div class="skeleton loading-meta-line"></div>
-                </div>
-            </div>
-
-            <div class="recommended-card">
-                <div class="skeleton thumb-box"></div>
-                <div class="card-details">
-                    <div class="skeleton loading-title-line"></div>
-                    <div class="skeleton loading-meta-line"></div>
-                </div>
-            </div>
-
-            <div class="recommended-card">
-                <div class="skeleton thumb-box"></div>
-                <div class="card-details">
-                    <div class="skeleton loading-title-line"></div>
-                    <div class="skeleton loading-meta-line"></div>
-                </div>
-            </div>
-
-        </aside>
-
-    </div>
-
-</body>
-</html>
