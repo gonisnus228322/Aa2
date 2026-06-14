@@ -223,4 +223,196 @@
             background-color: #f1f1f1;
             color: #0f0f0f;
             border: none;
-            padding: 0 1
+            padding: 0 16px;
+            height: 36px;
+            border-radius: 18px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .utility-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0 16px;
+            height: 36px;
+            border-radius: 18px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .video-description {
+            background-color: #212121;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        /* --- RECOMMENDATION SIDEBAR ENGINE --- */
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .recommended-card {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .thumb-box {
+            width: 168px;
+            height: 94px;
+            flex-shrink: 0;
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            padding-top: 4px;
+        }
+
+        .loading-title-line {
+            width: 90%;
+            height: 14px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        .loading-meta-line {
+            width: 55%;
+            height: 11px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 1016px) {
+            .page-container {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="left-header-section">
+            <div class="menu-button">
+                <div class="menu-line"></div>
+                <div class="menu-line" style="margin: 4px 0;"></div>
+                <div class="menu-line"></div>
+            </div>
+            
+            <div class="logo-section">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo">
+                <span class="region-tag">IQ</span>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search">
+            <button class="search-btn">🔍</button>
+        </div>
+        
+        <div class="user-section">
+            <div class="skeleton" style="width: 32px; height: 32px; border-radius: 50%;"></div>
+        </div>
+    </header>
+
+    <div class="page-container">
+        
+        <main class="primary-content">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+
+            <h1 class="video-title">Grand Theft Auto V Trailer</h1>
+
+            <div class="video-meta-row">
+                <div class="channel-info">
+                    <div class="skeleton channel-avatar"></div>
+                    <div class="channel-details">
+                        <div class="skeleton" style="width: 110px; height: 14px; margin-bottom: 6px; border-radius: 4px;"></div>
+                        <div class="skeleton" style="width: 70px; height: 10px; border-radius: 4px;"></div>
+                    </div>
+                    <button class="subscribe-btn" style="margin-left: 12px;">Subscribe</button>
+                </div>
+                
+                <div class="button-group">
+                    <button class="utility-btn">👍 2.8M</button>
+                    <button class="utility-btn">👎</button>
+                    <button class="utility-btn">↩️ Share</button>
+                    <button class="utility-btn">📥 Download</button>
+                </div>
+            </div>
+
+            <div class="video-description">
+                <p style="margin: 0 0 6px 0; font-weight: bold;">128M views • 14 years ago</p>
+                <div class="skeleton" style="width: 85%; height: 12px; margin-bottom: 6px; border-radius: 4px;"></div>
+                <div class="skeleton" style="width: 60%; height: 12px; border-radius: 4px;"></div>
+            </div>
+        </main>
+
+        <aside class="sidebar-content">
+            
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton loading-title-line"></div>
+                    <div class="skeleton loading-meta-line"></div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton loading-title-line"></div>
+                    <div class="skeleton loading-meta-line"></div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton loading-title-line"></div>
+                    <div class="skeleton loading-meta-line"></div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton loading-title-line"></div>
+                    <div class="skeleton loading-meta-line"></div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton loading-title-line"></div>
+                    <div class="skeleton loading-meta-line"></div>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+</body>
+</html>
