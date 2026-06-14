@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- DESIGN CORE ELEMENTS & THEME RESET --- */
@@ -63,21 +63,33 @@
             background-color: #f1f1f1;
         }
 
-        /* Perfectly proportioned brand container matching image_489fe8 */
+        /* Bulletproof Native CSS Hybrid Logo Container */
         .logo-section {
             display: flex;
             align-items: center;
             cursor: pointer;
             user-select: none;
-            padding: 18px 14px 18px 8px;
+            padding: 18px 24px 18px 8px;
             position: relative;
+            gap: 4px;
         }
         
-        /* Direct official asset pull to eliminate vector mathematical calculation glitches */
-        .logo-img {
-            height: 20px;
+        /* Loading the official favicon wrapper as the perfect red icon */
+        .logo-icon {
+            height: 18px;
             width: auto;
             display: block;
+        }
+
+        /* Recreating the perfect YouTube branding alignment using system fonts */
+        .logo-text {
+            color: #ffffff; /* Forced clean solid white text */
+            font-family: "Oswald", "Arial Black", sans-serif;
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            line-height: 1;
+            transform: scaleY(1.05); /* Simulates the official compressed font geometric stretch */
         }
 
         .region-tag {
@@ -85,7 +97,7 @@
             color: #aaa;
             font-weight: 400;
             position: absolute;
-            right: -2px;
+            right: 6px;
             top: 12px;
             font-family: "Roboto", sans-serif;
             letter-spacing: 0;
@@ -321,7 +333,11 @@
             </div>
             
             <div class="logo-section">
-                <img class="logo-img" src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg" alt="YouTube Logo">
+                <svg class="logo-icon" viewBox="-3 0 32 20" width="32" height="20" xmlns="http://www.w3.org/2000/svg" style="display: block; height: 18px; width: auto;">
+                    <path d="M27.97 2.44a3.5 3.5 0 0 0-2.46-2.46C23.34 0 14.28 0 14.28 0S5.23 0 3.06.58A3.5 3.5 0 0 0 .6 3.04l-.03.73-.03.88v10.68c0 .3.02.6.03.89a3.5 3.5 0 0 0 2.46 2.45c2.17.59 11.23.59 14.23.59s12.06 0 14.23-.59a3.5 3.5 0 0 0 2.46-2.45l.03-.89.03-.88V4.65c0-.3-.02-.6-.03-.89a3.5 3.5 0 0 0-2.46-2.46z" fill="#ff0000"/>
+                    <polygon points="11.43,5.71 19.05,10 11.43,14.29" fill="#ffffff"/>
+                </svg>
+                <span class="logo-text">YouTube</span>
                 <span class="region-tag">IQ</span>
             </div>
         </div>
