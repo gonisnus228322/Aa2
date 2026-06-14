@@ -44,7 +44,7 @@
             gap: 6px;
         }
 
-        /* Pure CSS 3 Lines Menu Button */
+        /* Tightened 3 Lines Menu Button to match native desktop spec */
         .menu-button {
             width: 40px;
             height: 40px;
@@ -52,13 +52,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 4px;
+            gap: 3px; /* Brought lines closer together */
             cursor: pointer;
             border-radius: 50%;
         }
         
         .menu-line {
-            width: 18px;
+            width: 16px; /* Slightly narrower line profiles */
             height: 2px;
             background-color: #f1f1f1;
         }
@@ -73,10 +73,11 @@
             position: relative;
         }
         
-        /* Loading the official crisp text logo instead of glitchy SVG paths */
+        /* Filters out the dark gray text and forces it to native white */
         .logo-section img {
             height: 20px;
             display: block;
+            filter: invert(1); 
         }
 
         .region-tag {
@@ -135,7 +136,6 @@
             overflow: hidden;
         }
 
-        /* Continuous buffering pulse trace */
         .skeleton::after {
             content: "";
             position: absolute;
@@ -314,7 +314,7 @@
         <div class="left-header-section">
             <div class="menu-button">
                 <div class="menu-line"></div>
-                <div class="menu-line" style="margin: 4px 0;"></div>
+                <div class="menu-line"></div>
                 <div class="menu-line"></div>
             </div>
             
