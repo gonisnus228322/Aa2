@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="https://www.youtube.com/s/desktop/282361cf/img/favicon_32x32.png">
     
     <style>
-        /* --- GLOBAL COLORS & RESET (YouTube Dark Mode) --- */
+        /* --- GLOBAL RESET & YOUTUBE DARK THEME --- */
         body {
             margin: 0;
             padding: 0;
@@ -17,7 +17,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER NAVIGATION BAR --- */
+        /* --- FIXED TOP NAVIGATION BAR --- */
         header {
             position: fixed;
             top: 0;
@@ -84,29 +84,30 @@
             cursor: pointer;
         }
 
-        /* --- MAIN PAGE GRID CONTAINER --- */
+        /* --- MAIN RESPONSIVE GRID LAYOUT --- */
         .page-container {
-            margin-top: 56px; /* Push down past fixed header */
-            padding: 24px 24px 0 24px;
+            margin-top: 56px; /* Space for the header */
+            padding: 24px;
             display: grid;
-            grid-template-columns: 1fr 402px; /* Main column vs fixed sidebar width */
+            grid-template-columns: 1fr 402px; /* Video space vs fixed sidebar width */
             gap: 24px;
             max-width: 1754px;
             margin-left: auto;
             margin-right: auto;
+            box-sizing: border-box;
         }
 
-        /* --- LEFT SIDE: PRIMARY CONTENT --- */
+        /* --- LEFT COLUMN: MAIN PLAYER & DETAILS --- */
         .primary-content {
             display: flex;
             flex-direction: column;
         }
 
-        /* Modern 16:9 Aspect Ratio Video Frame */
+        /* Fluid 16:9 Aspect Ratio Box */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 ratio magic */
+            padding-bottom: 56.25%;
             height: 0;
             background-color: #000;
             border-radius: 12px;
@@ -129,7 +130,6 @@
             line-height: 1.4;
         }
 
-        /* Channel Metadata and Buttons Area */
         .video-meta-row {
             display: flex;
             justify-content: space-between;
@@ -148,7 +148,7 @@
         .channel-avatar {
             width: 40px;
             height: 40px;
-            background-color: #777;
+            background-color: #ff4500;
             border-radius: 50%;
         }
 
@@ -172,7 +172,10 @@
             border-radius: 18px;
             font-weight: bold;
             cursor: pointer;
-            margin-left: 12px;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #d9d9d9;
         }
 
         .button-group {
@@ -194,11 +197,11 @@
             align-items: center;
             gap: 6px;
         }
+
         .utility-btn:hover {
             background-color: #3f3f3f;
         }
 
-        /* Expandable Description Block */
         .video-description {
             background-color: #272727;
             padding: 12px;
@@ -208,14 +211,13 @@
             margin-bottom: 24px;
         }
 
-        /* --- RIGHT SIDE: SIDEBAR RECOMMENDATIONS --- */
+        /* --- RIGHT COLUMN: SIDEBAR SUGGESTIONS --- */
         .sidebar-content {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        /* Compact Layout for Recommended Cards */
         .recommended-card {
             display: flex;
             gap: 8px;
@@ -230,6 +232,12 @@
             flex-shrink: 0;
             position: relative;
         }
+
+        /* Dynamic background colors to simulate video thumbnail variations */
+        .t1 { background: linear-gradient(45deg, #1e3c72, #2a5298); }
+        .t2 { background: linear-gradient(45deg, #243b55, #141e30); }
+        .t3 { background: linear-gradient(45deg, #780206, #061161); }
+        .t4 { background: linear-gradient(45deg, #11998e, #38ef7d); }
 
         .video-duration {
             position: absolute;
@@ -248,5 +256,119 @@
         }
 
         .card-title {
-            font
+            font-size: 0.9rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin: 0 0 4px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
 
+        .card-meta {
+            color: #aaa;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        /* --- MOBILE RESPONSIVENESS CRASH PANEL --- */
+        @media (max-width: 1016px) {
+            .page-container {
+                grid-template-columns: 1fr; /* Stack sidebar below video on small screens */
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-section">
+            <span style="color: #ff0000; font-size: 1.5rem;">▶</span>
+            <span>YouTube</span>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="user-section"></div>
+    </header>
+
+    <div class="page-container">
+        
+        <main class="primary-content">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+
+            <h1 class="video-title">Building Modern Fluid Interface Frameworks from Scratch (Tutorial)</h1>
+
+            <div class="video-meta-row">
+                <div class="channel-info">
+                    <div class="channel-avatar"></div>
+                    <div>
+                        <div class="channel-name">DevWorkspace Labs</div>
+                        <div class="channel-subs">1.42M subscribers</div>
+                    </div>
+                    <button class="subscribe-btn">Subscribe</button>
+                </div>
+                
+                <div class="button-group">
+                    <button class="utility-btn">👍 248K</button>
+                    <button class="utility-btn">👎</button>
+                    <button class="utility-btn">↩️ Share</button>
+                    <button class="utility-btn">📥 Download</button>
+                </div>
+            </div>
+
+            <div class="video-description">
+                <p style="margin: 0 0 6px 0; font-weight: bold;">1,204,510 views • Jun 14, 2026</p>
+                <p style="margin: 0;">In this course session, we dive directly into managing layouts, adjusting viewports, and structuring document object properties. Don't forget to drop a comment and subscribe for more code design content!</p>
+            </div>
+        </main>
+
+        <aside class="sidebar-content">
+            
+            <div class="recommended-card">
+                <div class="thumb-box t1"><span class="video-duration">14:22</span></div>
+                <div class="card-details">
+                    <h3 class="card-title">Everything You Need To Know About CSS Grid Frameworks</h3>
+                    <div class="card-meta">CodeAcademy Masters</div>
+                    <div class="card-meta">450K views • 3 months ago</div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="thumb-box t2"><span class="video-duration">8:05</span></div>
+                <div class="card-details">
+                    <h3 class="card-title">How Web Browsers Render Layout Elements Architecture</h3>
+                    <div class="card-meta">TechStack Insights</div>
+                    <div class="card-meta">1.2M views • 1 year ago</div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="thumb-box t3"><span class="video-duration">22:40</span></div>
+                <div class="card-details">
+                    <h3 class="card-title">Minecraft, But it's Programmed Entirely in HTML and Pure CSS</h3>
+                    <div class="card-meta">CubeCrafting Engine</div>
+                    <div class="card-meta">89K views • 2 days ago</div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="thumb-box t4"><span class="video-duration">5:12</span></div>
+                <div class="card-details">
+                    <h3 class="card-title">Why Hardware Inputs Experience Performance Lag (Fix Guide)</h3>
+                    <div class="card-meta">HardwareHQ Reviews</div>
+                    <div class="card-meta">310K views • 6 months ago</div>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+</body>
+</html>
