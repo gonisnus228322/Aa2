@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube - Video Watch Page</title>
+    <title>Grand Theft Auto V Trailer - YouTube</title>
     <link rel="icon" type="image/png" href="https://www.youtube.com/s/desktop/282361cf/img/favicon_32x32.png">
     
     <style>
-        /* --- GLOBAL RESET & YOUTUBE DARK THEME --- */
+        /* --- DESIGN CORE ELEMENTS & THEME RESET --- */
         body {
             margin: 0;
             padding: 0;
@@ -15,9 +15,10 @@
             color: #f1f1f1;
             font-family: "Roboto", "Arial", sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- FIXED TOP NAVIGATION BAR --- */
+        /* --- NATIVE TOP NAVIGATION ARCHITECTURE --- */
         header {
             position: fixed;
             top: 0;
@@ -30,23 +31,25 @@
             justify-content: space-between;
             padding: 0 16px;
             box-sizing: border-box;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-weight: bold;
-            font-size: 1.2rem;
             cursor: pointer;
+        }
+        
+        .logo-section img {
+            height: 20px;
         }
 
         .search-container {
             display: flex;
             align-items: center;
             width: 40%;
-            max-width: 600px;
+            max-width: 640px;
+            position: relative;
         }
 
         .search-bar {
@@ -55,12 +58,12 @@
             background-color: #121212;
             border: 1px solid #303030;
             border-radius: 40px 0 0 40px;
-            padding: 0 16px;
+            padding: 0 16px 0 48px;
             color: white;
             font-size: 1rem;
             outline: none;
         }
-
+        
         .search-bar:focus {
             border-color: #1c62b9;
         }
@@ -74,22 +77,50 @@
             border-radius: 0 40px 40px 0;
             color: white;
             cursor: pointer;
+            font-size: 1rem;
         }
 
         .user-section {
-            width: 32px;
-            height: 32px;
-            background-color: #555;
-            border-radius: 50%;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        /* --- MAIN RESPONSIVE GRID LAYOUT --- */
+        /* --- SKELETON LOADING PLACEHOLDERS --- */
+        .skeleton {
+            background-color: #282828;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Simple loading pulse effect */
+        .skeleton::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: translateX(-100%);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            100% { transform: translateX(100%); }
+        }
+
+        .skeleton-text {
+            height: 12px;
+            margin-bottom: 6px;
+        }
+        .skeleton-text.short { width: 60%; }
+        .skeleton-text.medium { width: 85%; }
+
+        /* --- APP SCREEN WORKSPACE LAYER --- */
         .page-container {
-            margin-top: 56px; /* Space for the header */
-            padding: 24px;
+            margin-top: 56px;
+            padding: 24px 24px 0 24px;
             display: grid;
-            grid-template-columns: 1fr 402px; /* Video space vs fixed sidebar width */
+            grid-template-columns: 1fr 402px;
             gap: 24px;
             max-width: 1754px;
             margin-left: auto;
@@ -97,13 +128,12 @@
             box-sizing: border-box;
         }
 
-        /* --- LEFT COLUMN: MAIN PLAYER & DETAILS --- */
+        /* --- PRIMARY BROADCAST BLOCK --- */
         .primary-content {
             display: flex;
             flex-direction: column;
         }
 
-        /* Fluid 16:9 Aspect Ratio Box */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -116,20 +146,19 @@
 
         .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             border: none;
         }
 
         .video-title {
             font-size: 1.25rem;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: "YouTube Sans", "Roboto", sans-serif;
             margin: 12px 0 8px 0;
             line-height: 1.4;
         }
 
+        /* Metarow with Exact Pill Buttons matching Screenshot */
         .video-meta-row {
             display: flex;
             justify-content: space-between;
@@ -148,19 +177,13 @@
         .channel-avatar {
             width: 40px;
             height: 40px;
-            background-color: #ff4500;
             border-radius: 50%;
         }
 
-        .channel-name {
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .channel-subs {
-            color: #aaa;
-            font-size: 0.75rem;
-            margin-top: 2px;
+        .channel-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .subscribe-btn {
@@ -170,12 +193,9 @@
             padding: 0 16px;
             height: 36px;
             border-radius: 18px;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.875rem;
             cursor: pointer;
-        }
-
-        .subscribe-btn:hover {
-            background-color: #d9d9d9;
         }
 
         .button-group {
@@ -184,98 +204,65 @@
         }
 
         .utility-btn {
-            background-color: #272727;
+            background-color: rgba(255, 255, 255, 0.1);
             color: white;
             border: none;
             padding: 0 16px;
             height: 36px;
             border-radius: 18px;
-            font-weight: bold;
-            font-size: 0.85rem;
+            font-weight: 500;
+            font-size: 0.875rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
         }
-
         .utility-btn:hover {
-            background-color: #3f3f3f;
+            background-color: rgba(255, 255, 255, 0.2);
         }
 
+        /* Boxed Description Segment */
         .video-description {
-            background-color: #272727;
+            background-color: #212121;
             padding: 12px;
             border-radius: 12px;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             line-height: 1.5;
             margin-bottom: 24px;
         }
 
-        /* --- RIGHT COLUMN: SIDEBAR SUGGESTIONS --- */
+        /* --- SECONDARY RECOMMENDATION SIDEBAR --- */
         .sidebar-content {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
+        /* Recommended cards built using Skeletons to simulate failed connection profiles */
         .recommended-card {
             display: flex;
             gap: 8px;
-            cursor: pointer;
         }
 
         .thumb-box {
             width: 168px;
             height: 94px;
-            background-color: #333;
             border-radius: 8px;
             flex-shrink: 0;
-            position: relative;
-        }
-
-        /* Dynamic background colors to simulate video thumbnail variations */
-        .t1 { background: linear-gradient(45deg, #1e3c72, #2a5298); }
-        .t2 { background: linear-gradient(45deg, #243b55, #141e30); }
-        .t3 { background: linear-gradient(45deg, #780206, #061161); }
-        .t4 { background: linear-gradient(45deg, #11998e, #38ef7d); }
-
-        .video-duration {
-            position: absolute;
-            bottom: 4px;
-            right: 4px;
-            background-color: rgba(0,0,0,0.8);
-            font-size: 0.75rem;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-weight: bold;
         }
 
         .card-details {
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            padding-top: 4px;
         }
 
-        .card-title {
-            font-size: 0.9rem;
-            font-weight: bold;
-            line-height: 1.3;
-            margin: 0 0 4px 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-meta {
-            color: #aaa;
-            font-size: 0.75rem;
-            line-height: 1.4;
-        }
-
-        /* --- MOBILE RESPONSIVENESS CRASH PANEL --- */
+        /* Responsive Flow Collapse */
         @media (max-width: 1016px) {
             .page-container {
-                grid-template-columns: 1fr; /* Stack sidebar below video on small screens */
+                grid-template-columns: 1fr;
                 padding: 16px;
             }
         }
@@ -285,14 +272,16 @@
 
     <header>
         <div class="logo-section">
-            <span style="color: #ff0000; font-size: 1.5rem;">▶</span>
-            <span>YouTube</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/YouTube_light_logo_%282017%29.png" alt="YouTube Logo" style="filter: invert(0); height: 20px;">
+            <span style="font-size: 10px; color: #aaa; vertical-align: super; margin-left: 4px; font-weight: 500;">IQ</span>
         </div>
         <div class="search-container">
             <input type="text" class="search-bar" placeholder="Search">
             <button class="search-btn">🔍</button>
         </div>
-        <div class="user-section"></div>
+        <div class="user-section">
+            <div class="skeleton" style="width: 32px; height: 32px; border-radius: 50%;"></div>
+        </div>
     </header>
 
     <div class="page-container">
@@ -302,20 +291,20 @@
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
             </div>
 
-            <h1 class="video-title">Building Modern Fluid Interface Frameworks from Scratch (Tutorial)</h1>
+            <h1 class="video-title">Grand Theft Auto V Trailer</h1>
 
             <div class="video-meta-row">
                 <div class="channel-info">
-                    <div class="channel-avatar"></div>
-                    <div>
-                        <div class="channel-name">DevWorkspace Labs</div>
-                        <div class="channel-subs">1.42M subscribers</div>
+                    <div class="skeleton channel-avatar"></div>
+                    <div class="channel-details">
+                        <div class="skeleton" style="width: 110px; height: 14px; margin-bottom: 6px;"></div>
+                        <div class="skeleton" style="width: 70px; height: 10px;"></div>
                     </div>
-                    <button class="subscribe-btn">Subscribe</button>
+                    <button class="subscribe-btn" style="margin-left: 12px;">Subscribe</button>
                 </div>
                 
                 <div class="button-group">
-                    <button class="utility-btn">👍 248K</button>
+                    <button class="utility-btn">👍 2.8M</button>
                     <button class="utility-btn">👎</button>
                     <button class="utility-btn">↩️ Share</button>
                     <button class="utility-btn">📥 Download</button>
@@ -323,46 +312,59 @@
             </div>
 
             <div class="video-description">
-                <p style="margin: 0 0 6px 0; font-weight: bold;">1,204,510 views • Jun 14, 2026</p>
-                <p style="margin: 0;">In this course session, we dive directly into managing layouts, adjusting viewports, and structuring document object properties. Don't forget to drop a comment and subscribe for more code design content!</p>
+                <p style="margin: 0 0 6px 0; font-weight: bold;">128M views • 14 years ago</p>
+                <div class="skeleton skeleton-text medium"></div>
+                <div class="skeleton skeleton-text short"></div>
             </div>
         </main>
 
         <aside class="sidebar-content">
             
             <div class="recommended-card">
-                <div class="thumb-box t1"><span class="video-duration">14:22</span></div>
+                <div class="skeleton thumb-box"></div>
                 <div class="card-details">
-                    <h3 class="card-title">Everything You Need To Know About CSS Grid Frameworks</h3>
-                    <div class="card-meta">CodeAcademy Masters</div>
-                    <div class="card-meta">450K views • 3 months ago</div>
+                    <div class="skeleton skeleton-text medium" style="height: 14px;"></div>
+                    <div class="skeleton skeleton-text short" style="height: 11px; margin-top: 6px;"></div>
                 </div>
             </div>
 
             <div class="recommended-card">
-                <div class="thumb-box t2"><span class="video-duration">8:05</span></div>
+                <div class="skeleton thumb-box"></div>
                 <div class="card-details">
-                    <h3 class="card-title">How Web Browsers Render Layout Elements Architecture</h3>
-                    <div class="card-meta">TechStack Insights</div>
-                    <div class="card-meta">1.2M views • 1 year ago</div>
+                    <div class="skeleton skeleton-text medium" style="height: 14px;"></div>
+                    <div class="skeleton skeleton-text short" style="height: 11px; margin-top: 6px;"></div>
                 </div>
             </div>
 
             <div class="recommended-card">
-                <div class="thumb-box t3"><span class="video-duration">22:40</span></div>
+                <div class="skeleton thumb-box"></div>
                 <div class="card-details">
-                    <h3 class="card-title">Minecraft, But it's Programmed Entirely in HTML and Pure CSS</h3>
-                    <div class="card-meta">CubeCrafting Engine</div>
-                    <div class="card-meta">89K views • 2 days ago</div>
+                    <div class="skeleton skeleton-text medium" style="height: 14px;"></div>
+                    <div class="skeleton skeleton-text short" style="height: 11px; margin-top: 6px;"></div>
                 </div>
             </div>
 
             <div class="recommended-card">
-                <div class="thumb-box t4"><span class="video-duration">5:12</span></div>
+                <div class="skeleton thumb-box"></div>
                 <div class="card-details">
-                    <h3 class="card-title">Why Hardware Inputs Experience Performance Lag (Fix Guide)</h3>
-                    <div class="card-meta">HardwareHQ Reviews</div>
-                    <div class="card-meta">310K views • 6 months ago</div>
+                    <div class="skeleton skeleton-text medium" style="height: 14px;"></div>
+                    <div class="skeleton skeleton-text short" style="height: 11px; margin-top: 6px;"></div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton skeleton-text medium" style="height: 14px;"></div>
+                    <div class="skeleton skeleton-text short" style="height: 11px; margin-top: 6px;"></div>
+                </div>
+            </div>
+
+            <div class="recommended-card">
+                <div class="skeleton thumb-box"></div>
+                <div class="card-details">
+                    <div class="skeleton skeleton-text medium" style="height: 14px;"></div>
+                    <div class="skeleton skeleton-text short" style="height: 11px; margin-top: 6px;"></div>
                 </div>
             </div>
 
