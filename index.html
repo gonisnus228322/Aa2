@@ -3,27 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>auaauaaauauuaaaauuuauauuaaaa</title>
-    <link rel="icon" type="image/png" href="https://imgur.com/XpcKhtR">
+    <title>YouTube - Video Watch Page</title>
+    <link rel="icon" type="image/png" href="https://www.youtube.com/s/desktop/282361cf/img/favicon_32x32.png">
+    
     <style>
+        /* --- GLOBAL COLORS & RESET (YouTube Dark Mode) --- */
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
+            background-color: #0f0f0f;
+            color: #f1f1f1;
+            font-family: "Roboto", "Arial", sans-serif;
+            overflow-x: hidden;
         }
-        h1 {
-            font-size: 4rem;
+
+        /* --- HEADER NAVIGATION BAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background-color: #0f0f0f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            box-sizing: border-box;
+            z-index: 100;
         }
-    </style>
-</head>
-<body>
 
-    <h1>H 🤑</h1>
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
 
-</body>
-</html>
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 40%;
+            max-width: 600px;
+        }
+
+        .search-bar {
+            width: 100%;
+            height: 40px;
+            background-color: #121212;
+            border: 1px solid #303030;
+            border-radius: 40px 0 0 40px;
+            padding: 0 16px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar:focus {
+            border-color: #1c62b9;
+        }
+
+        .search-btn {
+            height: 40px;
+            width: 64px;
+            background-color: #222222;
+            border: 1px solid #303030;
+            border-left: none;
+            border-radius: 0 40px 40px 0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .user-section {
+            width: 32px;
+            height: 32px;
+            background-color: #555;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* --- MAIN PAGE GRID CONTAINER --- */
+        .page-container {
+            margin-top: 56px; /* Push down past fixed header */
+            padding: 24px 24px 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 402px; /* Main column vs fixed sidebar width */
+            gap: 24px;
+            max-width: 1754px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- LEFT SIDE: PRIMARY CONTENT --- */
+        .primary-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Modern 16:9 Aspect Ratio Video Frame */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 ratio magic */
+            height: 0;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 12px 0 8px 0;
+            line-height: 1.4;
+        }
+
+        /* Channel Metadata and Buttons Area */
+        .video-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .channel-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #777;
+            border-radius: 50%;
+        }
+
+        .channel-name {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .channel-subs {
+            color: #aaa;
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        .subscribe-btn {
+            background-color: #f1f1f1;
+            color: #0f0f0f;
+            border: none;
+            padding: 0 16px;
+            height: 36px;
+            border-radius: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .utility-btn {
+            background-color: #272727;
+            color: white;
+            border: none;
+            padding: 0 16px;
+            height: 36px;
+            border-radius: 18px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .utility-btn:hover {
+            background-color: #3f3f3f;
+        }
+
+        /* Expandable Description Block */
+        .video-description {
+            background-color: #272727;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        /* --- RIGHT SIDE: SIDEBAR RECOMMENDATIONS --- */
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Compact Layout for Recommended Cards */
+        .recommended-card {
+            display: flex;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .thumb-box {
+            width: 168px;
+            height: 94px;
+            background-color: #333;
+            border-radius: 8px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background-color: rgba(0,0,0,0.8);
+            font-size: 0.75rem;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font
